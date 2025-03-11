@@ -544,3 +544,11 @@ q {
     font-weight: bold;
 }
 /* ----------------------------------------- */
+
+
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Technique to put the footer on the bottom of the webpage (Header/Main/Footer) */
+    min-height: 100vh /* Make the website at least as one page */
+}
