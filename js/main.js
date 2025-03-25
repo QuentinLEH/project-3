@@ -1,68 +1,31 @@
-const audio = document.getElementById("audio");
-const vinyl = document.querySelector(".vinyl");
-const tonearm = document.getElementById("tonearm");
-const playPauseBtn = document.getElementById("playPause");
-const volumeControl = document.getElementById("volumeControl");
+/* ----------------------------------------- */
+/* SCROLLING BAR --------------------------- */
+/* ----------------------------------------- */
 
-let isPlaying = false;
 
-// Vinyl collection
-const albums = [
-    { cover: "album1.jpg", track: "track1.mp3" },
-    { cover: "album2.jpg", track: "track2.mp3" },
-    { cover: "album3.jpg", track: "track3.mp3" }
-];
 
-// Generate vinyl records in the library
-const library = document.querySelector(".vinyl-list");
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleContainer = document.getElementById("toggle-container");
+  const toggleButton = document.getElementById("toggle-button");
+  const dayImage = document.querySelector(".day .background-image");
+  const nightImage = document.querySelector(".night .background-image");
+  let isNightMode = false;
 
-albums.forEach(album => {
-    const record = document.createElement("div");
-    record.classList.add("vinyl-record");
-    record.style.backgroundImage = `url(${album.cover})`;
-    record.draggable = true;
-    record.dataset.track = album.track;
-
-    record.addEventListener("dragstart", (e) => {
-        e.dataTransfer.setData("track", album.track);
-    });
-
-    library.appendChild(record);
-});
-
-// Drop vinyl on turntable
-const turntable = document.getElementById("turntable");
-
-turntable.addEventListener("dragover", (e) => e.preventDefault());
-
-turntable.addEventListener("drop", (e) => {
-    e.preventDefault();
-    const track = e.dataTransfer.getData("track");
-
-    audio.src = track;
-    playVinyl();
-});
-
-// Play / Pause function
-function playVinyl() {
-    if (!isPlaying) {
-        audio.play();
-        isPlaying = true;
-        vinyl.style.animationDuration = "3s";
-        tonearm.style.transform = "rotate(20deg)";
-        playPauseBtn.textContent = "⏸";
-    } else {
-        audio.pause();
-        isPlaying = false;
-        vinyl.style.animationDuration = "0s";
-        tonearm.style.transform = "rotate(0deg)";
-        playPauseBtn.textContent = "▶️";
-    }
-}
-
-playPauseBtn.addEventListener("click", playVinyl);
-
-// Volume control
-volumeControl.addEventListener("input", () => {
-    audio.volume = volumeControl.value;
+  toggleContainer.addEventListener("click", function () {
+      isNightMode = !isNightMode;
+      
+      if (isNightMode) {
+          nightImage.classList.remove("inactive");
+          dayImage.classList.add("inactive");
+          toggleContainer.style.backgroundColor = "#333";
+          toggleButton.style.transform = "translateX(32px)";
+          toggleButton.style.backgroundColor = "#fff";
+      } else {
+          dayImage.classList.remove("inactive");
+          nightImage.classList.add("inactive");
+          toggleContainer.style.backgroundColor = "#b4b4b4";
+          toggleButton.style.transform = "translateX(0)";
+          toggleButton.style.backgroundColor = "#fff";
+      }
+  });
 });
