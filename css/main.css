@@ -2,120 +2,645 @@
 /* GENERAL RULES --------------------------- */
 /* ----------------------------------------- */
 html, body {
-    position: fixed;
+    position: fixed; /* Position fixe pour occuper tout l'écran */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    background-color: var(--c-bg);
-    color: #fff;
-    white-space: nowrap;
-    transition-property: background-color;
-    transition-duration: .9s;
-    transition-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1);
+    overflow-x: hidden; /* Désactive le défilement horizontal */
+    overflow-y: hidden; /* Désactive le défilement vertical */
+    background-color: var(--c-bg); /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    white-space: nowrap; /* Empêche le texte de se couper */
+    transition-property: background-color; /* Propriété de transition */
+    transition-duration: 0.9s; /* Durée de la transition */
+    transition-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1); /* Fonction de temporisation de la transition */
 }
-
-html { /* Scroll visual effect */
+html { /* Effet de défilement fluide */
     scroll-behavior: smooth;
 }
 body {
-    font-family: "Helvetica", sans-serif;
-    color: #252525;
-    background-color: #dddddd;
-    font-size: 14px;
-    font-weight: light 300;
-    display: grid;
-    grid-template-rows: auto 1fr auto; /* Technique to put the footer on the bottom of the webpage (Header/Main/Footer) */
-    min-height: 100vh; /* Make the website at least as one page */
-    /* margin: 0px; */
+    font-family: "Helvetica", sans-serif; /* Police de caractères */
+    color: #252525; /* Couleur du texte */
+    background-color: #dddddd; /* Couleur de fond */
+    font-size: 14px; /* Taille de la police */
+    font-weight: light 300; /* Poids de la police */
+    display: grid; /* Utilisation de la grille CSS */
+    grid-template-rows: auto 1fr auto; /* Disposition de la grille */
+    min-height: 100vh; /* Hauteur minimale de la page */
 }
-
-a { /* Link style */
-    color: #468847;
-    text-decoration: underline;
+a { /* Style des liens */
+    color: #468847; /* Couleur des liens */
+    text-decoration: underline; /* Soulignement des liens */
 }
-a:focus-visible { /* TAB for Accessibility */
-    border: 5px solid #ff0000;
+a:focus-visible { /* Style des liens lorsqu'ils sont focusés */
+    border: 5px solid #ff0000; /* Bordure rouge */
 }
-a:hover { /* Link style when you have your mouse on it */
-    color: #ff0000;
+a:hover { /* Style des liens au survol */
+    color: #ff0000; /* Couleur des liens au survol */
 }
 button {
-    cursor: pointer; /* Cursor style for buttons */
-    background-color: #252525;
-    border: 2px solid #252525;
-    border-radius: 12px;
-    color: #dddddd;
-    padding: 2%; /* Responsive padding, depend on % */
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1.2rem;
-    font-weight: bold;
+    cursor: pointer; /* Curseur en forme de pointeur */
+    background-color: #252525; /* Couleur de fond des boutons */
+    border: 2px solid #252525; /* Bordure des boutons */
+    border-radius: 12px; /* Coins arrondis des boutons */
+    color: #dddddd; /* Couleur du texte des boutons */
+    padding: 2%; /* Espacement interne des boutons */
+    text-align: center; /* Alignement du texte au centre */
+    text-decoration: none; /* Pas de décoration de texte */
+    display: inline-block; /* Affichage en ligne */
+    font-size: 1.2rem; /* Taille de la police */
+    font-weight: bold; /* Poids de la police */
 }
-button:hover { /* Button style when you have your mouse on it */
-    background-color: #dddddd;
-    border: 2px solid #252525;
-    color: #252525;
+button:hover { /* Style des boutons au survol */
+    background-color: #dddddd; /* Couleur de fond au survol */
+    border: 2px solid #252525; /* Bordure au survol */
+    color: #252525; /* Couleur du texte au survol */
 }
 
 /* ----------------------------------------- */
 /* BACKGROUND ------------------------------ */
 /* ----------------------------------------- */
 .image-wrapper {
-    position: relative;
+    position: relative; /* Position relative pour le conteneur d'images */
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    height: 100vh; /* Hauteur de la vue */
+    overflow: auto; /* Défilement automatique */
+    overflow-y: hidden; /* Désactive le débordement vertical */
 }
-.background-image {
-    transition: opacity 0.5s ease-in-out;
-    position: absolute;
+.day-container, .night-container {
+    transition: opacity 3s ease-in-out; /* Transition de l'opacité */
+    position: absolute; /* Position absolue pour superposer les conteneurs */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    object-position: center;
-    opacity: 1;
+    min-width: 100%; /* Largeur minimale de l'image */
+    /*width: 100%;*/ /* Largeur de la vue */
+    height: 100vh; /* Hauteur de la vue */
+    opacity: 1; /* Opacité initiale */
 }
-.background-image.inactive {
-    opacity: 0;
+.day-container.inactive, .night-container.inactive {
+    opacity: 0; /* Opacité nulle pour les conteneurs inactifs */
+    pointer-events: none; /* Désactive les événements de la souris */
+}
+.background-image {
+    /*width: 100%;*/ /* Largeur de la vue */
+    min-width: 100%; /* Largeur minimale de l'image */
+    min-height: 100%; /* Hauteur minimale de l'image */
+    height: 100vh; /* Hauteur de la vue */
+    object-fit: cover; /* Couvre tout l'espace disponible */
+    object-position: center; /* Centre l'image */
+    position: absolute; /* Position absolue pour superposer les images */
 }
 
 /* ----------------------------------------- */
 /* DAY-NIGHT ------------------------------- */
 /* ----------------------------------------- */
 .day-night-container {
-    position: absolute;
+    position: absolute; /* Position absolue pour le conteneur du bouton */
     top: 20px;
     right: 20px;
     width: 60px;
     height: 28px;
-    background-color: #b4b4b4;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    padding: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    z-index: 200;
-    outline: none;
+    background-color: #b4b4b4; /* Couleur de fond */
+    border-radius: 50px; /* Coins arrondis */
+    display: flex; /* Utilisation de Flexbox */
+    align-items: center; /* Alignement vertical */
+    padding: 4px; /* Espacement interne */
+    cursor: pointer; /* Curseur en forme de pointeur */
+    transition: background-color 0.3s ease-in-out; /* Transition de la couleur de fond */
+    z-index: 200; /* Index Z pour la superposition */
+    outline: none; /* Pas de contour */
 }
 .day-night-button {
     width: 26px;
     height: 26px;
-    background-color: white;
-    border-radius: 50%;
-    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.04);
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    background-color: white; /* Couleur de fond */
+    border-radius: 50%; /* Coins arrondis */
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.04); /* Ombre portée */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Transitions */
 }
 .day-night-container.active {
-    background-color: #181818;
+    background-color: #181818; /* Couleur de fond en mode actif */
 }
 .day-night-container.active .day-night-button {
-    transform: translateX(34px);
-    background-color: #fff;
+    transform: translateX(34px); /* Déplacement horizontal */
+    background-color: #fff; /* Couleur de fond */
+}
+
+
+/* ----------------------------------------- */
+/* CLICKABLE-POINT ------------------------- */
+/* ----------------------------------------- */
+.clickable-point {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 150;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .page-content .clickable-point {
+    opacity: 1;
+  }
+  .clickable-point .dot {
+    width: 15px;
+    height: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.04);
+    position: relative;
+    animation: pulse 2s infinite ease-in-out;
+}
+.dot::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    animation: outer-pulse 2s infinite ease-in-out;
+    z-index: -1;
+}
+@keyframes outer-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* ----------------------------------------- */
+/* CLICKABLE-POINT POSITION CHARACTER ------ */
+/* ----------------------------------------- */
+:root {
+    --character-x: 33.5;
+    --character-y: 65;
+}
+.character {
+    --data-x: var(--character-x);
+    --data-y: var(--character-y);
+}
+.sleepy-text {
+    display: none;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.clickable-point.character.sleeping:hover .sleepy-text {
+    display: block;
+}
+
+
+/* ----------------------------------------- */
+/* CLOUDS ANIMATION ------------------------ */
+/* ----------------------------------------- */
+.clouds-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Double largeur pour contenir les deux nuages */
+    height: 100vh;
+    overflow: hidden; /* Masque le débordement */
+}
+.clouds {
+    position: absolute;
+    top: 0;
+    width: 100%; /* Chaque nuage occupe la moitié du container */
+    height: auto;
+    animation: moveClouds 15s linear infinite;
+}
+.clouds-1 {
+    left: 0;
+}
+
+@media (max-width: 1200px) {
+    .clouds-container {
+        width: 115%;
+    }
+}
+@media (max-width: 1150px) {
+    .clouds-container {
+        width: 115%;
+    }
+}
+@media (max-width: 1000px) {
+    .clouds-container {
+        width: 130%;
+    }
+}
+@media (max-width: 900px) {
+    .clouds-container {
+        width: 150%;
+    }
+}
+@media (max-width: 800px) {
+    .clouds-container {
+        width: 170%;
+    }
+}
+@media (max-width: 700px) {
+    .clouds-container {
+        width: 200%;
+    }
+}
+@media (max-width: 600px) {
+    .clouds-container {
+        width: 232%;
+    }
+}
+@media (max-width: 550px) {
+    .clouds-container {
+        width: 255%;
+    }
+}
+@media (max-width: 500px) {
+    .clouds-container {
+        width: 280%;
+    }
+}
+@media (max-width: 450px) {
+    .clouds-container {
+        width: 310%;
+    }
+}
+
+@keyframes moveClouds {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Déplace seulement de la moitié */
+    }
+}
+
+/* ----------------------------------------- */
+/* EAGLE ----------------------------------- */
+/* ----------------------------------------- */
+:root {
+    --eagle-x: 3;
+    --eagle-y: 15;
+}
+@keyframes eagleAnimation {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+@keyframes eagleAnimation2 {
+    0%, 100% {
+     transform: translateY(0);
+    }
+    50% {
+     transform: translateY(-20px); /* Ajustez cette valeur pour le mouvement vertical */
+    }
+}
+.frame1 {
+    animation: eagleAnimation 0.5s infinite linear;
+}
+.frame2 {
+    animation: eagleAnimation 0.5s infinite reverse linear;
+}
+.eagle-container {
+    width: 100%; /* Double largeur pour contenir les deux aigles */
+    height: auto;
+    animation: eagleAnimation2 3s infinite ease-in-out;
+}
+.eagle-position {
+    position: absolute;
+    width: 35%;
+    --data-x: var(--eagle-x);
+    --data-y: var(--eagle-y);
+}
+.frame1, .frame2, .clickable-point, .dot {
+    transition: none;
+}
+@media (max-width: 900px) {
+    .eagle-container {
+        width: 130%;
+    }
+}
+@media (max-width: 800px) {
+    .eagle-container {
+        width: 150%;
+    }
+}
+@media (max-width: 700px) {
+    .eagle-container {
+        width: 180%;
+    }
+}
+@media (max-width: 500px) {
+    .eagle-container {
+        width: 250%;
+    }
+}
+@media (max-width: 400px) {
+    .eagle-container {
+        width: 280%;
+    }
+}
+
+
+/* ----------------------------------------- */
+
+
+/* ----------------------------------------- */
+/* CLOUDS ANIMATION GAME ------------------- */
+/* ----------------------------------------- */
+.clouds-container-game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 50%;
+    width: 100%; /* Double largeur pour contenir les deux nuages */
+    height: 100vh;
+    overflow: hidden; /* Masque le débordement */
+}
+.clouds-game {
+    position: absolute;
+    top: 0;
+    width: 100%; /* Chaque nuage occupe la moitié du container */
+    height: auto;
+    animation: moveClouds 15s linear infinite;
+}
+.clouds-1 {
+    left: 0;
+}
+
+@media (max-width: 1200px) {
+    .clouds-container-game {
+        width: 115%;
+    }
+}
+@media (max-width: 1150px) {
+    .clouds-container-game {
+        width: 115%;
+    }
+}
+@media (max-width: 1000px) {
+    .clouds-container-game {
+        width: 130%;
+    }
+}
+@media (max-width: 900px) {
+    .clouds-container-game {
+        width: 150%;
+    }
+}
+@media (max-width: 800px) {
+    .clouds-container-game {
+        width: 170%;
+    }
+}
+@media (max-width: 700px) {
+    .clouds-container-game {
+        width: 200%;
+    }
+}
+@media (max-width: 600px) {
+    .clouds-container-game {
+        width: 232%;
+    }
+}
+@media (max-width: 550px) {
+    .clouds-container-game {
+        width: 255%;
+    }
+}
+@media (max-width: 500px) {
+    .clouds-container-game {
+        width: 280%;
+    }
+}
+@media (max-width: 450px) {
+    .clouds-container-game {
+        width: 310%;
+    }
+}
+
+
+/* ----------------------------------------- */
+/* EAGLE GAME ------------------------------ */
+/* ----------------------------------------- */
+:root {
+    --eaglegame-x: 15;
+    --eaglegame-y: 30;
+}
+@keyframes eagleAnimation {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@keyframes eagleAnimation2 {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+.frame1 {
+    animation: eagleAnimation 0.5s infinite linear;
+}
+.frame2 {
+    animation: eagleAnimation 0.5s infinite reverse linear;
+}
+.eagle-container-game {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    animation: eagleAnimation2 3s infinite ease-in-out;
+}
+.eagle-position-game {
+    position: absolute;
+    width: 30%;
+    top: calc(var(--eaglegame-y)*1%);
+    left: calc(var(--eaglegame-x)*1%);
+}
+
+
+/* ----------------------------------------- */
+/* TEXT-ANIMATION -------------------------- */
+/* ----------------------------------------- */
+:root {
+    --text-x: 15;
+    --text-y: 30;
+}
+.text-container {
+    position: absolute;
+    top: calc(var(--text-y)*1%);
+    left: calc(var(--text-x)*1%);
+    animation: eagleAnimation2 3s infinite ease-in-out;
+}
+h1{
+    font-size: 5vw;
+    overflow: hidden;
+    z-index: 999;
+    color: azure;
+    text-shadow: #181818 0 0 5px;
+    opacity: 80%;
+}
+h1 span{
+    display: inline-block;
+    overflow: hidden;
+}
+
+
+/* ----------------------------------------- */
+/* BACK-ARROW ------------------------------ */
+/* ----------------------------------------- */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 50px; 
+    width: 50px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease-in-out;
+    z-index: 9999;
+    border-radius: 5px; 
+  }
+  .back-button:hover {
+    opacity: 0.5; 
+  }
+  .arrow-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; 
+  }
+
+
+/* ----------------------------------------- */
+/* CHARACTER-GAME -------------------------- */
+/* ----------------------------------------- */
+:root {
+    --charactergame-x: 15;
+    --charactergame-y: 45;
+}
+@keyframes mouthAnimation {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@keyframes bodyAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+.frame4 {
+    animation: mouthAnimation 0.2s infinite reverse linear;
+}
+.character-container-game {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    animation: bodyAnimation 3s infinite ease-in-out;
+}
+.character-position-game {
+    position: absolute;
+    width: 800px;
+    top: calc(var(--charactergame-y)*1%);
+    left: calc(var(--charactergame-x)*1%);
+}
+
+
+/* ----------------------------------------- */
+/* CHARACTER-TEXT-SPEECH ------------------- */
+/* ----------------------------------------- */
+.text-container-character {
+    position: absolute;
+    top: calc(var(--charactergame-y)*1%);
+    left: calc(var(--charactergame-x)*1%);
+}
+.line-1{
+    position: relative;  
+    border-right: 2px solid rgba(255,255,255,.75);
+    font:600 1em/1 'Courier New', monospace;
+    color: antiquewhite;
+    text-shadow: #181818 0 0 5px;
+    font-size: 1.8em;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-200%);
+    box-sizing:content-box;
+}
+/* ANIMATION */
+.anim-typewriter{
+  width:0;
+  animation: typewriter 2s steps(44) 1s 1 normal both,
+             blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 14.5em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+@media (max-width: 450px) {
+    :root {
+        --charactergame-x: 2;
+        --charactergame-y: 52;
+    }
+}
+
+
+/* ----------------------------------------- */
+/* CLICKABLE-POINT  ------------------- */
+/* ----------------------------------------- */
+:root {
+    --eaglesleepy-x: 10;  /* Position horizontale */
+    --eaglesleepy-y: 21;  /* Position verticale */
+}
+.eagle-position-sleepy {
+    position: absolute;
+    --data-x: var(--eaglesleepy-x);
+    --data-y: var(--eaglesleepy-y);
+    width: 35%; /* Ajustez selon la taille souhaitée */
+}
+.clickable-point.eaglesleepy.sleeping:hover .sleepy-text {
+    display: block;
 }

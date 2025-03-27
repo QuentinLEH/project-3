@@ -25,8 +25,40 @@
 
 	<main class="page-content">
     <div class="image-wrapper">
-      <img src="./img/background-img-day.svg" class="background-image day" alt="Day Image">
-      <img src="./img/background-img-night.svg" class="background-image night inactive" alt="Night Image">
+      <div class="day-container">
+        <img src="./img/background-img-day.webp" class="background-image day" alt="Day Image">
+        <div class="clouds-container">
+            <img src="./img/clouds.png" class="clouds clouds-1" alt="Clouds">
+            <img src="./img/clouds.png" class="clouds clouds-2" alt="Clouds">
+        </div>
+        <div class="eagle-container">
+          <a href="./eagle-game.html" class="clickable-point eagle-position">
+            <img src="./img/eagle-position-1.png" class="eagle-position frame1" alt="">
+            <img src="./img/eagle-position-2.png" class="eagle-position frame2" alt="">
+            <div class="dot"></div>
+          </a>
+        </div>
+        <a href="./character-speech.html" class="clickable-point character-position">
+          <div class="clickable-point character sleeping" id="characterSpeech">
+            <div class="dot"></div>
+          </div>
+        </a>
+      </div>
+      <div class="night-container inactive">
+        <img src="./img/background-img-night.webp" class="background-image night" alt="Night Image">
+        <a href="" class="clickable-point character-position">
+          <div class="clickable-point character sleeping" id="characterSpeech">
+            <div class="dot"></div>
+            <p class="sleepy-text">* zzzZZZ *</p>
+          </div>
+        </a>
+        <a href="" class="clickable-point eagle-position-sleepy">
+          <div class="clickable-point eaglesleepy sleeping" id="characterSpeech">
+            <div class="dot"></div>
+            <p class="sleepy-text">* zzzZZZ *</p>
+          </div>
+        </a>
+      </div>
     </div>
   </main>
 
