@@ -7,55 +7,55 @@ html, body {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow-x: hidden; /* Désactive le défilement horizontal */
-    overflow-y: hidden; /* Désactive le défilement vertical */
-    background-color: var(--c-bg); /* Couleur de fond */
-    color: #fff; /* Couleur du texte */
+    overflow-x: hidden; 
+    overflow-y: hidden; 
+    background-color: var(--c-bg);
+    color: #fff; 
     white-space: nowrap; /* Empêche le texte de se couper */
-    transition-property: background-color; /* Propriété de transition */
-    transition-duration: 0.9s; /* Durée de la transition */
+    transition-property: background-color; 
+    transition-duration: 0.9s; 
     transition-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1); /* Fonction de temporisation de la transition */
 }
 html { /* Effet de défilement fluide */
     scroll-behavior: smooth;
 }
 body {
-    font-family: "Helvetica", sans-serif; /* Police de caractères */
-    color: #252525; /* Couleur du texte */
-    background-color: #dddddd; /* Couleur de fond */
-    font-size: 14px; /* Taille de la police */
-    font-weight: light 300; /* Poids de la police */
+    font-family: "Helvetica", sans-serif; 
+    color: #252525; 
+    background-color: #dddddd; 
+    font-size: 14px; 
+    font-weight: light 300; 
     display: grid; /* Utilisation de la grille CSS */
     grid-template-rows: auto 1fr auto; /* Disposition de la grille */
-    min-height: 100vh; /* Hauteur minimale de la page */
+    min-height: 100vh; 
 }
 a { /* Style des liens */
-    color: #468847; /* Couleur des liens */
-    text-decoration: underline; /* Soulignement des liens */
+    color: #468847; 
+    text-decoration: underline; 
 }
 a:focus-visible { /* Style des liens lorsqu'ils sont focusés */
-    border: 5px solid #ff0000; /* Bordure rouge */
+    border: 5px solid #ff0000; 
 }
 a:hover { /* Style des liens au survol */
-    color: #ff0000; /* Couleur des liens au survol */
+    color: #ff0000; 
 }
 button {
-    cursor: pointer; /* Curseur en forme de pointeur */
-    background-color: #252525; /* Couleur de fond des boutons */
-    border: 2px solid #252525; /* Bordure des boutons */
-    border-radius: 12px; /* Coins arrondis des boutons */
-    color: #dddddd; /* Couleur du texte des boutons */
-    padding: 2%; /* Espacement interne des boutons */
-    text-align: center; /* Alignement du texte au centre */
-    text-decoration: none; /* Pas de décoration de texte */
-    display: inline-block; /* Affichage en ligne */
-    font-size: 1.2rem; /* Taille de la police */
-    font-weight: bold; /* Poids de la police */
+    cursor: pointer; 
+    background-color: #252525; 
+    border: 2px solid #252525; 
+    border-radius: 12px; 
+    color: #dddddd; 
+    padding: 2%; 
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block; 
+    font-size: 1.2rem;
+    font-weight: bold; 
 }
 button:hover { /* Style des boutons au survol */
-    background-color: #dddddd; /* Couleur de fond au survol */
-    border: 2px solid #252525; /* Bordure au survol */
-    color: #252525; /* Couleur du texte au survol */
+    background-color: #dddddd; 
+    border: 2px solid #252525; 
+    color: #252525; 
 }
 
 /* ----------------------------------------- */
@@ -64,31 +64,31 @@ button:hover { /* Style des boutons au survol */
 .image-wrapper {
     position: relative; /* Position relative pour le conteneur d'images */
     width: 100%;
-    height: 100vh; /* Hauteur de la vue */
-    overflow: auto; /* Défilement automatique */
-    overflow-y: hidden; /* Désactive le débordement vertical */
+    height: 100vh; 
+    overflow: auto; 
+    overflow-y: hidden; 
 }
 .day-container, .night-container {
-    transition: opacity 3s ease-in-out; /* Transition de l'opacité */
+    transition: opacity 3s ease-in-out; 
     position: absolute; /* Position absolue pour superposer les conteneurs */
     top: 0;
     left: 0;
-    min-width: 100%; /* Largeur minimale de l'image */
-    /*width: 100%;*/ /* Largeur de la vue */
-    height: 100vh; /* Hauteur de la vue */
+    min-width: 100%; 
+    /*width: 100%;*/ 
+    height: 100vh; 
     opacity: 1; /* Opacité initiale */
 }
 .day-container.inactive, .night-container.inactive {
-    opacity: 0; /* Opacité nulle pour les conteneurs inactifs */
+    opacity: 0;
     pointer-events: none; /* Désactive les événements de la souris */
 }
 .background-image {
-    /*width: 100%;*/ /* Largeur de la vue */
-    min-width: 100%; /* Largeur minimale de l'image */
-    min-height: 100%; /* Hauteur minimale de l'image */
-    height: 100vh; /* Hauteur de la vue */
-    object-fit: cover; /* Couvre tout l'espace disponible */
-    object-position: center; /* Centre l'image */
+    /*width: 100%;*/ 
+    min-width: 100%; 
+    min-height: 100%; 
+    height: 100vh; 
+    object-fit: cover; 
+    object-position: center; 
     position: absolute; /* Position absolue pour superposer les images */
 }
 
@@ -101,30 +101,30 @@ button:hover { /* Style des boutons au survol */
     right: 20px;
     width: 60px;
     height: 28px;
-    background-color: #b4b4b4; /* Couleur de fond */
-    border-radius: 50px; /* Coins arrondis */
+    background-color: #b4b4b4; 
+    border-radius: 50px; 
     display: flex; /* Utilisation de Flexbox */
-    align-items: center; /* Alignement vertical */
-    padding: 4px; /* Espacement interne */
-    cursor: pointer; /* Curseur en forme de pointeur */
-    transition: background-color 0.3s ease-in-out; /* Transition de la couleur de fond */
-    z-index: 200; /* Index Z pour la superposition */
-    outline: none; /* Pas de contour */
+    align-items: center; 
+    padding: 4px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease-in-out; 
+    z-index: 200; 
+    outline: none; 
 }
 .day-night-button {
     width: 26px;
     height: 26px;
-    background-color: white; /* Couleur de fond */
-    border-radius: 50%; /* Coins arrondis */
-    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.04); /* Ombre portée */
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Transitions */
+    background-color: white; 
+    border-radius: 50%; 
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.04); 
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 .day-night-container.active {
-    background-color: #181818; /* Couleur de fond en mode actif */
+    background-color: #181818; 
 }
 .day-night-container.active .day-night-button {
     transform: translateX(34px); /* Déplacement horizontal */
-    background-color: #fff; /* Couleur de fond */
+    background-color: #fff; 
 }
 
 
@@ -629,7 +629,7 @@ h1 span{
 
 
 /* ----------------------------------------- */
-/* CLICKABLE-POINT  ------------------- */
+/* EAGLE-NIGHT-CLICKABLE-POINT ------------- */
 /* ----------------------------------------- */
 :root {
     --eaglesleepy-x: 10;  /* Position horizontale */
